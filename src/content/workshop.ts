@@ -56,6 +56,9 @@ const photos = [
 
 /** Orientación real de cada archivo (alto > ancho → portrait). */
 const photoOrientation: Record<string, 'portrait' | 'landscape'> = {
+  '/photos/deborah-fonceca-01.jpg': 'portrait',
+  '/photos/deborah-fonceca-02.jpg': 'portrait',
+  '/photos/deborah-fonceca-03.jpg': 'portrait',
   '/photos/c03.jpg': 'portrait',
   '/photos/c04.jpg': 'landscape',
   '/photos/c05.jpg': 'landscape',
@@ -176,8 +179,35 @@ const titles = [
   'Fin de la tarde',
 ]
 
+const deborahWorks: Work[] = [
+  {
+    id: 'deborah-fonceca-1',
+    student: 'Deborah Fonceca',
+    title: 'Lechuza al sol',
+    image: '/photos/deborah-fonceca-01.jpg',
+    order: 1,
+    orientation: 'portrait',
+  },
+  {
+    id: 'deborah-fonceca-2',
+    student: 'Deborah Fonceca',
+    title: 'Lechuza en el poste',
+    image: '/photos/deborah-fonceca-02.jpg',
+    order: 2,
+    orientation: 'portrait',
+  },
+  {
+    id: 'deborah-fonceca-3',
+    student: 'Deborah Fonceca',
+    title: 'Mirada al árbol',
+    image: '/photos/deborah-fonceca-03.jpg',
+    order: 3,
+    orientation: 'portrait',
+  },
+]
+
 function buildWorks(): Work[] {
-  const works: Work[] = []
+  const works: Work[] = [...deborahWorks]
   const counts = new Map<string, number>()
 
   for (let order = 1; order <= 50; order += 1) {
@@ -193,7 +223,7 @@ function buildWorks(): Work[] {
       student,
       title: titles[(order - 1) % titles.length],
       image,
-      order,
+      order: order + deborahWorks.length,
       orientation: photoOrientation[image] ?? 'landscape',
     })
   }
